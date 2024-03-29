@@ -6,6 +6,10 @@ connectToMongoo();
 const app = express()
 const port = 5000
 
+
+app.get('/',(req,res)=>{
+  res.send('backend is working')
+});
 app.use(cors())
 app.use(express.json())
 const auth=require('./routers/auth');
