@@ -11,7 +11,7 @@ app.get('/',(req,res)=>{
   res.send('backend is working')
 });
 app.use(cors({
-  origin:["todo-fronted-three.vercel.app"],
+  origin:["https://todo-fronted-three.vercel.app"],
   methods:["POST","GET","PUT","DELETE"],
   credentials:true
 }))
