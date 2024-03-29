@@ -12,7 +12,7 @@ const jwt_secret = "romanthapaand@";
 const fetchuser=require("../middleware/fetchuser");
 
 
-connect()
+connect();
 // route 1 create user endpoint
 router.post(
   "/createuser",
