@@ -31,10 +31,10 @@ router.post(
     }
     try {
       // try checking if there is an email which already exits
-      let user = await User.findOne({ email: req.body.email });
-      if (user) {
-        return res.status(400).json({success, error: "user already exits" });
-      }
+      // let user = await User.findOne({ email: req.body.email });
+      // if (user) {
+      //   return res.status(400).json({success, error: "user already exits" });
+      // }
       // for hash password
       const salt = await bcrypt.genSaltSync(10);
       var hash = await bcrypt.hashSync(req.body.password, salt);
