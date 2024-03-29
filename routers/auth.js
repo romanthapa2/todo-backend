@@ -1,6 +1,7 @@
 const User = require("../modules/users");
 const express = require("express");
 const router = express.Router();
+// const connect=require( "./db")
 // bcrypt helps to secure the password
 const bcrypt = require("bcryptjs");
 // to check the data given by the user is correct or not and return message if not we
@@ -8,7 +9,8 @@ const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const jwt_secret = "romanthapaand@";
-const fetchuser=require("../middleware/fetchuser")
+const fetchuser=require("../middleware/fetchuser");
+const { connect } = require("mongoose");
 
 // route 1 create user endpoint
 router.post(
@@ -29,11 +31,12 @@ router.post(
       return res.status(400).json({ success,errors: errors.array() });
     }
     try {
+      let connect=await connect();
       // try checking if there is an email which already exits
-      // let user = await User.findOne({ email: req.body.email });
-      // if (user) {
-      //   return res.status(400).json({success, error: "user already exits" });
-      // }
+      let user = await User.findOne({ email: req.body.email });
+      if (user) {
+        return res.status(400).json({success, error: "user already exits" });
+      }
       // for hash password
       const salt = await bcrypt.genSaltSync(10);
       var hash = await bcrypt.hashSync(req.body.password, salt);
