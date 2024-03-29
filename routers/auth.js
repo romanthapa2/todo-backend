@@ -1,7 +1,7 @@
 const User = require("../modules/users");
 const express = require("express");
 const router = express.Router();
-const connect=require( "./db")
+const connect=require( "../db")
 // bcrypt helps to secure the password
 const bcrypt = require("bcryptjs");
 // to check the data given by the user is correct or not and return message if not we
